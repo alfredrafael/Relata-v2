@@ -1,19 +1,12 @@
-// Craft Imports
-import { Container } from "@/components/craft";
-import { ContactForm } from "@/components/contactForm";
-import ContactInfo from "@/components/contactInfo";
-import PageHeader from "@/components/pageHeader";
 import type { Metadata } from "next";
 import { siteConfig } from "@/site.config";
+import RelataHeader from "@/components/relata-header";
+import RelataContact from "@/components/relata-contact";
+import RelataFooter from "@/components/relata-footer";
 
-const thumbnail = {
-  url: "https://www.alfredorafael.com/wp-content/uploads/2026/01/pexels-nimlo-4509131-scaled.jpg",
-  alt: "Get in touch with Alfredo Rafael",
-};
-
-const title = "Get in Touch | Alfredo Rafael";
+const title = "Contact | Relata";
 const description =
-  "I'm available for freelance projects and other opportunities. Reach out to discuss how we can collaborate!";
+  "Tell Relata what you're building, changing, or imagining. Let's start a conversation.";
 
 export const metadata: Metadata = {
   title,
@@ -25,35 +18,19 @@ export const metadata: Metadata = {
     siteName: siteConfig.site_name,
     title,
     description,
-    images: [thumbnail],
   },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [thumbnail],
-  },
+  twitter: { card: "summary", title, description },
 };
 
 export default function Contact() {
   return (
-    <>
-      <PageHeader
-        title="Get in Touch"
-        subtitle="I'm available for freelance projects and other opportunities. Reach out to discuss how we can collaborate!"
-        imgSrc="https://www.alfredorafael.com/wp-content/uploads/2026/01/pexels-nimlo-4509131-scaled.jpg"
-      />
-
-      <Container>
-        <div className="flex flex-col md:flex-row md:gap-8 lg:gap-10 py-4">
-          <div className="order-2 md:order-1">
-            <ContactForm />
-          </div>
-          <div className="order-1 md:order-2 mb-5 md:mb-0 md:w-1/2 lg:w-2/5">
-            <ContactInfo />
-          </div>
-        </div>
-      </Container>
-    </>
+    <main
+      id="top"
+      className="min-h-screen overflow-hidden bg-[#101314] text-white"
+    >
+      <RelataHeader />
+      <RelataContact standalone />
+      <RelataFooter />
+    </main>
   );
 }

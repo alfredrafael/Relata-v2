@@ -28,7 +28,7 @@ export function Nav({ className, children, id }: NavProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (pathname === "/") return null;
+  if (pathname === "/" || pathname === "/contact") return null;
 
   return (
     <nav

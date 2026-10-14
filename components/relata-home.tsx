@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
-import emailjs from "@emailjs/browser";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import RelataHeader from "@/components/relata-header";
+import RelataContact from "@/components/relata-contact";
+import RelataFooter from "@/components/relata-footer";
 
 const services = [
   {
@@ -32,106 +33,9 @@ const services = [
 ];
 
 export default function RelataHome() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState("");
-  const sending = useRef(false);
-
-  async function sendEmail(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (sending.current) return;
-
-    const form = event.currentTarget;
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    setSubmitError("");
-
-    if (!serviceId || !templateId || !publicKey) {
-      setSubmitError("We couldn't send your message right now. Please try again later.");
-      return;
-    }
-
-    sending.current = true;
-    setIsSubmitting(true);
-    try {
-      await emailjs.sendForm(serviceId, templateId, form, { publicKey });
-      form.reset();
-      setSubmitted(true);
-    } catch {
-      setSubmitError("Your message wasn't sent. Please try again.");
-    } finally {
-      sending.current = false;
-      setIsSubmitting(false);
-    }
-  }
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101314]/85 text-white backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-          <a
-            href="#top"
-            className="flex items-center gap-3"
-            aria-label="Relata home"
-          >
-            <img
-              src="/media/relata-logo.png"
-              alt="Relata Digital"
-              width={6200}
-              height={1928}
-              id="logo"
-              style={{ height: "3rem", width: "auto" }}
-            />
-          </a>
-          <nav
-            className="hidden items-center gap-9 text-[11px] font-medium uppercase tracking-[0.22em] md:flex"
-            aria-label="Main navigation"
-          >
-            <a className="transition-colors hover:text-[#d4af62]" href="#about">
-              About
-            </a>
-            <a
-              className="transition-colors hover:text-[#d4af62]"
-              href="#services"
-            >
-              Services
-            </a>
-            <a
-              className="transition-colors hover:text-[#d4af62]"
-              href="#contact"
-            >
-              Contact
-            </a>
-          </nav>
-          <a
-            href="#contact"
-            className="hidden items-center gap-2 rounded-full bg-[#d4af62] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform hover:-translate-y-0.5 md:flex"
-          >
-            Start a conversation <ArrowUpRight className="size-4" />
-          </a>
-          <button
-            className="md:hidden"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-        {menuOpen && (
-          <nav className="flex flex-col gap-5 border-t border-white/10 px-6 py-6 text-xs uppercase tracking-[0.2em] md:hidden">
-            <a href="#about" onClick={() => setMenuOpen(false)}>
-              About
-            </a>
-            <a href="#services" onClick={() => setMenuOpen(false)}>
-              Services
-            </a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>
-              Contact
-            </a>
-          </nav>
-        )}
-      </header>
+      <RelataHeader home />
 
       <section
         id="top"
@@ -264,101 +168,9 @@ export default function RelataHome() {
         </div>
       </section>
 
-      <section
-        id="contact"
-        className="bg-[#101314] px-6 py-24 text-white lg:px-10 lg:py-32"
-      >
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[.9fr_1.1fr]">
-          <div>
-            <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.25em] text-[#d4af62]">
-              03 / Let&apos;s connect
-            </p>
-            <h2 className="text-5xl font-medium leading-[.95] tracking-[-.05em] sm:text-7xl">
-              Have something
-              <br />
-              <em className="font-serif font-normal text-[#d4af62]">
-                worth saying?
-              </em>
-            </h2>
-            <p className="mt-8 max-w-sm leading-relaxed text-white/55">
-              Tell us what you&apos;re building, changing, or imagining.
-              We&apos;ll meet you there.
-            </p>
-          </div>
-          <div>
-            {submitted ? (
-              <div role="status" className="border-t border-white/20 py-8">
-                <p className="text-2xl">
-                  Thank you. We&apos;ll be in touch shortly.
-                </p>
-                <p className="mt-3 text-white/55">
-                  Your message has been received! Thank you.
-                </p>
-              </div>
-            ) : (
-              <form
-                className="border-t border-white/20"
-                onSubmit={sendEmail}
-                aria-busy={isSubmitting}
-              >
-                <label className="block border-b border-white/20 py-5">
-                  <span className="sr-only">Your name</span>
-                  <input
-                    name="user_name"
-                    autoComplete="name"
-                    required
-                    className="w-full bg-transparent text-xl outline-none placeholder:text-white/35"
-                    placeholder="Your name"
-                  />
-                </label>
-                <label className="block border-b border-white/20 py-5">
-                  <span className="sr-only">Your email</span>
-                  <input
-                    name="user_email"
-                    autoComplete="email"
-                    required
-                    type="email"
-                    className="w-full bg-transparent text-xl outline-none placeholder:text-white/35"
-                    placeholder="Email address"
-                  />
-                </label>
-                <label className="block border-b border-white/20 py-5">
-                  <span className="sr-only">Your phone number (optional)</span>
-                  <input
-                    name="user_phone"
-                    type="tel"
-                    autoComplete="tel"
-                    className="w-full bg-transparent text-xl outline-none placeholder:text-white/35"
-                    placeholder="Phone number (optional)"
-                  />
-                </label>
-                <label className="block border-b border-white/20 py-5">
-                  <span className="sr-only">Your message</span>
-                  <textarea
-                    name="message"
-                    required
-                    rows={3}
-                    className="w-full resize-none bg-transparent text-xl outline-none placeholder:text-white/35"
-                    placeholder="What are you working on?"
-                  />
-                </label>
-                {submitError && <p role="alert" className="mt-5 text-red-300">{submitError}</p>}
-                <button type="submit" disabled={isSubmitting} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d4af62] px-7 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform hover:-translate-y-1 disabled:cursor-wait disabled:opacity-60">
-                  {isSubmitting ? "Sending..." : "Send message"} <ArrowUpRight className="size-4" />
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
+      <RelataContact />
 
-      <footer className="flex flex-col gap-5 bg-[#101314] px-6 pb-8 text-[10px] uppercase tracking-[0.2em] text-white/40 sm:flex-row sm:items-center sm:justify-between lg:px-10">
-        <span>© 2026 Relata LLC</span>
-        <span>Digital communications for a connected world</span>
-        <a href="#top" className="text-[#d4af62]">
-          Back to top ↑
-        </a>
-      </footer>
+      <RelataFooter />
     </main>
   );
 }
