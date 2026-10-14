@@ -7,6 +7,7 @@ import { mainMenu } from "@/app/data/navsData";
 import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "@/components/icons/logo";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
@@ -17,6 +18,7 @@ interface NavProps {
 }
 
 export function Nav({ className, children, id }: NavProps) {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,6 +27,8 @@ export function Nav({ className, children, id }: NavProps) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  if (pathname === "/") return null;
 
   return (
     <nav
