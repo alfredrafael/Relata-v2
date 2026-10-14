@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const services = [
@@ -33,6 +34,38 @@ const services = [
 export default function RelataHome() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const sending = useRef(false);
+
+  async function sendEmail(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (sending.current) return;
+
+    const form = event.currentTarget;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    setSubmitError("");
+
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitError("We couldn't send your message right now. Please try again later.");
+      return;
+    }
+
+    sending.current = true;
+    setIsSubmitting(true);
+    try {
+      await emailjs.sendForm(serviceId, templateId, form, { publicKey });
+      form.reset();
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Your message wasn't sent. Please try again.");
+    } finally {
+      sending.current = false;
+      setIsSubmitting(false);
+    }
+  }
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101314]/85 text-white backdrop-blur-md">
@@ -43,8 +76,10 @@ export default function RelataHome() {
             aria-label="Relata home"
           >
             <img
-              src="https://relatacomm.wordpress.com/wp-content/uploads/2020/08/logo_and_text.png"
-              alt="logo"
+              src="/media/relata-logo.png"
+              alt="Relata Digital"
+              width={6200}
+              height={1928}
               id="logo"
               style={{ height: "3rem", width: "auto" }}
             />
@@ -100,7 +135,7 @@ export default function RelataHome() {
 
       <section
         id="top"
-        className="relative flex min-h-[760px] items-end bg-[#101314] pt-28 text-white lg:min-h-screen"
+        className="relative isolate flex min-h-[760px] items-end overflow-hidden bg-[#101314] pt-28 text-white lg:min-h-screen"
       >
         <video
           className="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -108,12 +143,12 @@ export default function RelataHome() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
           tabIndex={-1}
         >
           <source
-            src="https://relatacomm.wordpress.com/wp-content/uploads/2020/08/relata-header-w-shadow.mp4"
+            src="/media/relata-hero.mp4"
             type="video/mp4"
           />
         </video>
@@ -252,25 +287,25 @@ export default function RelataHome() {
           </div>
           <div>
             {submitted ? (
-              <div className="border-t border-white/20 py-8">
+              <div role="status" className="border-t border-white/20 py-8">
                 <p className="text-2xl">
                   Thank you. We&apos;ll be in touch shortly.
                 </p>
                 <p className="mt-3 text-white/55">
-                  Your message is on its way to the Relata team.
+                  Your message has been received! Thank you.
                 </p>
               </div>
             ) : (
               <form
                 className="border-t border-white/20"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  setSubmitted(true);
-                }}
+                onSubmit={sendEmail}
+                aria-busy={isSubmitting}
               >
                 <label className="block border-b border-white/20 py-5">
                   <span className="sr-only">Your name</span>
                   <input
+                    name="user_name"
+                    autoComplete="name"
                     required
                     className="w-full bg-transparent text-xl outline-none placeholder:text-white/35"
                     placeholder="Your name"
@@ -279,6 +314,8 @@ export default function RelataHome() {
                 <label className="block border-b border-white/20 py-5">
                   <span className="sr-only">Your email</span>
                   <input
+                    name="user_email"
+                    autoComplete="email"
                     required
                     type="email"
                     className="w-full bg-transparent text-xl outline-none placeholder:text-white/35"
@@ -286,16 +323,28 @@ export default function RelataHome() {
                   />
                 </label>
                 <label className="block border-b border-white/20 py-5">
+                  <span className="sr-only">Your phone number (optional)</span>
+                  <input
+                    name="user_phone"
+                    type="tel"
+                    autoComplete="tel"
+                    className="w-full bg-transparent text-xl outline-none placeholder:text-white/35"
+                    placeholder="Phone number (optional)"
+                  />
+                </label>
+                <label className="block border-b border-white/20 py-5">
                   <span className="sr-only">Your message</span>
                   <textarea
+                    name="message"
                     required
                     rows={3}
                     className="w-full resize-none bg-transparent text-xl outline-none placeholder:text-white/35"
                     placeholder="What are you working on?"
                   />
                 </label>
-                <button className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d4af62] px-7 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform hover:-translate-y-1">
-                  Send message <ArrowUpRight className="size-4" />
+                {submitError && <p role="alert" className="mt-5 text-red-300">{submitError}</p>}
+                <button type="submit" disabled={isSubmitting} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d4af62] px-7 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform hover:-translate-y-1 disabled:cursor-wait disabled:opacity-60">
+                  {isSubmitting ? "Sending..." : "Send message"} <ArrowUpRight className="size-4" />
                 </button>
               </form>
             )}
