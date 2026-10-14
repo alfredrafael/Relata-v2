@@ -5,10 +5,10 @@ interface ContentMetadataOptions {
   title: string;
   description: string;
   slug?: string;
-  basePath?: "posts" | "pages" | "personal-messages";
+  basePath?: string;
   /** Full canonical/OG URL override, for pages without a single content slug (e.g. archives). */
   url?: string;
-  /** WordPress featured image to use as the OG/Twitter thumbnail instead of the generated title card. */
+  /** Featured image to use as the OG/Twitter thumbnail instead of the generated title card. */
   image?: { url: string; width?: number; height?: number; alt?: string };
 }
 

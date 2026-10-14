@@ -1,5 +1,4 @@
-import { Section, Container, Prose } from "@/components/craft";
-import PDFIcon from "@/components/icons/pdfIcon";
+import { Section } from "@/components/craft";
 import UXIcon from "@/components/icons/uxIcon";
 import SEOIcon from "./icons/seoIcon";
 import FastTruckIcon from "./icons/fastTruckIcon";
@@ -54,51 +53,4 @@ export default function Services() {
       </div>
     </Section>
   );
-}
-
-{
-  /* <Section className="px-6 lg:px-28 2xl:px-48 xl:px-36">
-      <Prose>
-        <h1 className="text-center">Our Services</h1>
-      </Prose>
-      <div className="grid md:grid-cols-3 gap-4 mt-6">
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/posts"
-        >
-          <Pen size={32} />
-          <span>
-            Posts{" "}
-            <span className="block text-sm text-muted-foreground">
-              All posts from your WordPress
-            </span>
-          </span>
-        </Link>
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/pages"
-        >
-          <File size={32} />
-          <span>
-            Pages{" "}
-            <span className="block text-sm text-muted-foreground">
-              Custom pages from your WordPress
-            </span>
-          </span>
-        </Link>
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/posts/authors"
-        >
-          <User size={32} />
-          <span>
-            Authors{" "}
-            <span className="block text-sm text-muted-foreground">
-              List of the authors from your WordPress
-            </span>
-          </span>
-        </Link>
-      </div>
-    </Section > 
-    */
 }

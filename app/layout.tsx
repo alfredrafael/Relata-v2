@@ -16,9 +16,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Alfredo Rafael - Software Engineer",
-  description:
-    "Portfolio website of Alfredo Rafael; software engineer specializing in web development and accessibility.",
+  title: siteConfig.site_name,
+  description: siteConfig.site_description,
   metadataBase: new URL(siteConfig.site_domain),
   alternates: {
     canonical: "/",

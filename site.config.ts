@@ -5,8 +5,8 @@ type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  site_name: "Alfredo Rafael | Software Engineer",
+  site_name: "Relata",
   site_description:
-    "Front-End Software Engineer specializing in React, Next.js, and TypeScript.",
-  site_domain: "https://www.alfredodeveloper.com",
+    "Relata official website.",
+  site_domain: "https://relata.us",
 };
