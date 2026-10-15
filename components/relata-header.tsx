@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
-export default function RelataHeader({ home = false }: { home?: boolean }) {
+export default function RelataHeader({ home = false, services = false }: { home?: boolean; services?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101314]/85 text-white backdrop-blur-md">
@@ -31,7 +31,8 @@ export default function RelataHeader({ home = false }: { home?: boolean }) {
             </a>
             <a
               className="transition-colors hover:text-[#d4af62]"
-              href={home ? "#services" : "/#services"}
+              href="/services"
+              aria-current={services ? "page" : undefined}
             >
               Services
             </a>
@@ -62,7 +63,8 @@ export default function RelataHeader({ home = false }: { home?: boolean }) {
             <a href={home ? "#about" : "/#about"} onClick={() => setMenuOpen(false)}>
               About
             </a>
-            <a href={home ? "#services" : "/#services"} onClick={() => setMenuOpen(false)}>
+            <a href="/services"
+              aria-current={services ? "page" : undefined} onClick={() => setMenuOpen(false)}>
               Services
             </a>
             <a href="#contact" onClick={() => setMenuOpen(false)}>

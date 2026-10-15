@@ -139,7 +139,7 @@ export default function RelataHome() {
                 people.
               </h2>
             </div>
-            <span className="hidden text-5xl text-[#b58d3a] sm:block">✳</span>
+            <a href="/services" className="inline-flex shrink-0 items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] underline decoration-[#b58d3a] underline-offset-8">All services <ArrowUpRight className="size-4 text-[#b58d3a]" /></a>
           </div>
           <div className="grid border-t border-foreground/20 md:grid-cols-2">
             {services.map((service) => (
