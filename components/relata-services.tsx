@@ -1,6 +1,5 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import servicesJournal from "@/public/media/services-journal.png";
+import ServicesHeroImage from "@/components/services-hero-image";
 import RelataHeader from "@/components/relata-header";
 import RelataContact from "@/components/relata-contact";
 import RelataFooter from "@/components/relata-footer";
@@ -22,16 +21,7 @@ export default function RelataServices() {
       <RelataHeader services />
       <section className="relative isolate overflow-hidden bg-[#101314] px-6 pb-16 pt-44 text-white lg:px-10 lg:pb-24 lg:pt-56" aria-labelledby="services-title">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20">
-          <div className="absolute inset-y-0 right-0 w-full md:w-4/5 lg:w-3/4">
-            <Image
-              src={servicesJournal}
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1024px) 75vw, (min-width: 768px) 80vw, 100vw"
-              className="object-cover object-[65%_center] md:object-right"
-            />
-          </div>
+          <ServicesHeroImage />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#101314_0%,rgba(16,19,20,0.85)_35%,rgba(16,19,20,0.5)_100%)] md:bg-[linear-gradient(90deg,#101314_10%,rgba(16,19,20,0.9)_35%,rgba(16,19,20,0.3)_75%)]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#101314] via-transparent to-[#101314]/20" />
         </div>
