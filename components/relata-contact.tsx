@@ -16,20 +16,38 @@ export default function RelataContact({ standalone = false }: { standalone?: boo
     if (sending.current) return;
 
     const form = event.currentTarget;
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     setSubmitError("");
-
-    if (!serviceId || !templateId || !publicKey) {
-      setSubmitError("We couldn't send your message right now. Please try again later.");
-      return;
-    }
 
     sending.current = true;
     setIsSubmitting(true);
     try {
-      await emailjs.sendForm(serviceId, templateId, form, { publicKey });
+      const data = new FormData(form);
+      const name = String(data.get("user_name") ?? "").trim();
+      const [firstName, ...lastName] = name.split(/\s+/);
+      const email = String(data.get("user_email") ?? "").trim();
+      const phone = String(data.get("user_phone") ?? "").trim();
+
+      const configResponse = await fetch("/api/contact-config", { cache: "no-store" });
+      if (!configResponse.ok) {
+        setSubmitError("We couldn't send your message right now. Please try again later.");
+        return;
+      }
+      const { serviceId, templateId, publicKey } = await configResponse.json();
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("Invalid contact configuration response");
+      }
+
+      await emailjs.send(serviceId, templateId, {
+        user_name: name,
+        user_email: email,
+        user_phone: phone,
+        message: String(data.get("message") ?? ""),
+        // Keep the original EmailJS template fields populated after the redesign.
+        userFirstName: firstName,
+        userLastName: lastName.join(" "),
+        userEmail: email,
+        userPhone: phone,
+      }, { publicKey });
       form.reset();
       setSubmitted(true);
     } catch {

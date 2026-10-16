@@ -19,4 +19,4 @@ Routes: `/`, `/contact`, `/resume`, `/api/og`, `/sitemap.xml`, `/robots.txt`.
 `lib/utils.ts` merges classes; `lib/metadata.ts` provides metadata and text helpers.
 
 Preserve layout during focused maintenance. Portfolio content and external media remain to be replaced with approved Relata assets.
-The optional EmailJS contact form uses the public build-time variables documented in `.env.example`.
+The EmailJS contact form reads public browser configuration at runtime through `/api/contact-config`, using the variables documented in `.env.example`.
