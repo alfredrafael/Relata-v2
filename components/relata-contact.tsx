@@ -4,8 +4,14 @@ import { useRef, useState, type FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { ArrowUpRight } from "lucide-react";
 
+function requiredFieldsAreValid(form: HTMLFormElement) {
+  return Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input[required], textarea[required]"))
+    .every((field) => field.value.trim().length > 0 && field.validity.valid);
+}
+
 export default function RelataContact({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? "h1" : "h2";
+  const [canSubmit, setCanSubmit] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -16,6 +22,7 @@ export default function RelataContact({ standalone = false }: { standalone?: boo
     if (sending.current) return;
 
     const form = event.currentTarget;
+    if (!requiredFieldsAreValid(form)) return;
     setSubmitError("");
 
     sending.current = true;
@@ -49,6 +56,7 @@ export default function RelataContact({ standalone = false }: { standalone?: boo
         userPhone: phone,
       }, { publicKey });
       form.reset();
+      setCanSubmit(false);
       setSubmitted(true);
     } catch {
       setSubmitError("Your message wasn't sent. Please try again.");
@@ -93,6 +101,8 @@ export default function RelataContact({ standalone = false }: { standalone?: boo
               <form
                 className="border-t border-white/20"
                 onSubmit={sendEmail}
+                onInput={(event) => setCanSubmit(requiredFieldsAreValid(event.currentTarget))}
+                onChange={(event) => setCanSubmit(requiredFieldsAreValid(event.currentTarget))}
                 aria-busy={isSubmitting}
               >
                 <label className="block border-b border-white/20 py-5">
@@ -136,8 +146,11 @@ export default function RelataContact({ standalone = false }: { standalone?: boo
                     placeholder="What are you working on?"
                   />
                 </label>
+                <p id="contact-required-fields" className="mt-5 text-sm text-white/55">
+                  Enter your name, a valid email address, and a message to send. Phone is optional.
+                </p>
                 {submitError && <p role="alert" className="mt-5 text-red-300">{submitError}</p>}
-                <button type="submit" disabled={isSubmitting} className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d4af62] px-7 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform hover:-translate-y-1 disabled:cursor-wait disabled:opacity-60">
+                <button type="submit" disabled={!canSubmit || isSubmitting} aria-describedby="contact-required-fields" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#d4af62] px-7 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform enabled:hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-60">
                   {isSubmitting ? "Sending..." : "Send message"} <ArrowUpRight className="size-4" />
                 </button>
               </form>

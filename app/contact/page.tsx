@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/site.config";
-import RelataHeader from "@/components/relata-header";
 import RelataContact from "@/components/relata-contact";
 import RelataFooter from "@/components/relata-footer";
 
@@ -28,7 +27,6 @@ export default function Contact() {
       id="top"
       className="min-h-screen overflow-hidden bg-[#101314] text-white"
     >
-      <RelataHeader />
       <RelataContact standalone />
       <RelataFooter />
     </main>

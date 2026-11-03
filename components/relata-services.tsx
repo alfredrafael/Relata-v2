@@ -1,6 +1,5 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import ServicesHeroImage from "@/components/services-hero-image";
-import RelataHeader from "@/components/relata-header";
 import RelataContact from "@/components/relata-contact";
 import RelataFooter from "@/components/relata-footer";
 
@@ -18,7 +17,6 @@ const services = [
 export default function RelataServices() {
   return (
     <main id="top" className="min-h-screen overflow-hidden bg-background text-foreground">
-      <RelataHeader services />
       <section className="relative isolate overflow-hidden bg-[#101314] px-6 pb-16 pt-44 text-white lg:px-10 lg:pb-24 lg:pt-56" aria-labelledby="services-title">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20">
           <ServicesHeroImage />

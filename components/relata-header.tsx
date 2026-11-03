@@ -1,11 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
-export default function RelataHeader({ home = false, services = false }: { home?: boolean; services?: boolean }) {
+export default function RelataHeader() {
+  const pathname = usePathname();
+  const home = pathname === "/";
+  const services = pathname === "/services";
+  const contactHref = home || services || pathname === "/contact" ? "#contact" : "/contact";
   const [menuOpen, setMenuOpen] = useState(false);
   return (
+    <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101314]/85 text-white backdrop-blur-md">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
           <a
@@ -38,13 +44,13 @@ export default function RelataHeader({ home = false, services = false }: { home?
             </a>
             <a
               className="transition-colors hover:text-[#d4af62]"
-              href="#contact"
+              href={contactHref}
             >
               Contact
             </a>
           </nav>
           <a
-            href="#contact"
+            href={contactHref}
             className="hidden items-center gap-2 rounded-full bg-[#d4af62] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform hover:-translate-y-0.5 md:flex"
           >
             Start a conversation <ArrowUpRight className="size-4" />
@@ -67,11 +73,15 @@ export default function RelataHeader({ home = false, services = false }: { home?
               aria-current={services ? "page" : undefined} onClick={() => setMenuOpen(false)}>
               Services
             </a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>
+            <a href={contactHref} onClick={() => setMenuOpen(false)}>
               Contact
             </a>
           </nav>
         )}
       </header>
+      {!home && !services && pathname !== "/contact" && (
+        <div className="h-20" aria-hidden="true" />
+      )}
+    </>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import RelataHeader from "@/components/relata-header";
 import RelataContact from "@/components/relata-contact";
 import RelataFooter from "@/components/relata-footer";
 
@@ -35,7 +34,6 @@ const services = [
 export default function RelataHome() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-      <RelataHeader home />
 
       <section
         id="top"
