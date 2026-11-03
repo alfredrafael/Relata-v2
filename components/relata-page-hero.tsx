@@ -22,7 +22,7 @@ export default function RelataPageHero({
 }: RelataPageHeroProps) {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#101314] px-6 py-20 text-white lg:px-10 lg:py-28"
+      className="relative isolate overflow-hidden bg-[#101314] px-6 pb-20 pt-40 text-white lg:px-10 lg:pb-28 lg:pt-52"
       aria-label={eyebrowText}
     >
       {imgUrl && (

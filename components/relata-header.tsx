@@ -101,9 +101,13 @@ export default function RelataHeader() {
           </nav>
         )}
       </header>
-      {!home && !services && pathname !== "/contact" && (
-        <div className="h-20" aria-hidden="true" />
-      )}
+      {!home &&
+        !services &&
+        pathname !== "/contact" &&
+        pathname !== "/the-team" &&
+        pathname !== "/style-guide" && (
+          <div className="h-20" aria-hidden="true" />
+        )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import styles from "./style-guide.module.css";
 
 const colors = [
   {
@@ -53,76 +53,18 @@ const typeStyles = [
 
 export default function StyleGuide() {
   return (
-    <main
-      className="guide"
-      style={
-        {
-          "--ink": "#111416",
-          "--paper": "#F5F2EB",
-          "--gold": "#DDB45A",
-        } as CSSProperties
-      }
-    >
-      <style>{`
-        .guide { min-height: 100vh; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
-        .guide * { box-sizing: border-box; }
-        .guide-header { padding: 28px clamp(24px, 5vw, 72px); background: var(--ink); color: var(--paper); display: flex; justify-content: space-between; gap: 32px; align-items: center; }
-        .guide-mark { display: flex; align-items: center; gap: 12px; font-size: 15px; letter-spacing: .08em; }
-        .guide-mark-symbol { width: 26px; height: 26px; border: 1px solid var(--gold); border-radius: 50% 50% 50% 8%; transform: rotate(45deg); }
-        .guide-header small, .eyebrow { color: var(--gold); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; }
-        .guide-section { padding: clamp(56px, 9vw, 128px) clamp(24px, 8vw, 120px); border-bottom: 1px solid rgba(17,20,22,.16); }
-        .guide-section.dark { background: var(--ink); color: var(--paper); }
-        .guide-section h1, .guide-section h2 { margin: 18px 0 0; max-width: 920px; font-size: clamp(52px, 9vw, 132px); font-weight: 400; line-height: .88; letter-spacing: -.065em; }
-        .guide-section h2 { font-size: clamp(42px, 6.5vw, 92px); }
-        .italic { color: var(--gold); font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 400; }
-        .guide-intro { max-width: 560px; margin-top: 32px; color: rgba(245,242,235,.72); font-size: clamp(16px, 1.7vw, 21px); line-height: 1.5; }
-        .grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 48px; }
-        .swatch { min-height: 170px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(17,20,22,.12); }
-        .swatch span:last-child { font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
-        .type-grid { display: grid; gap: 0; margin-top: 48px; }
-        .type-row { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 28px 0; border-top: 1px solid rgba(17,20,22,.16); }
-        .type-label { font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .16em; text-transform: uppercase; }
-        .type-meta { margin-top: 8px; color: #66705D; font-size: 12px; }
-        .display { font-size: clamp(42px, 6vw, 88px); letter-spacing: -.06em; line-height: .9; }
-        .sectionHeading { font-size: clamp(32px, 4vw, 56px); letter-spacing: -.05em; line-height: .95; }
-        .body { max-width: 520px; font-size: 18px; line-height: 1.5; }
-        .eyebrow { font-size: 11px; }
-        .layout-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-        .note { padding: 24px; background: #D7D9D2; min-height: 150px; }
-        .note strong { display: block; margin-bottom: 12px; font-size: 20px; font-weight: 500; }
-        .note p { margin: 0; color: rgba(17,20,22,.68); line-height: 1.5; }
-        .guide-control { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 14px 22px; border: 1px solid transparent; border-radius: 999px; background: var(--gold); color: var(--ink); font: 700 11px ui-sans-serif, system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: transform .15s ease, background-color .15s ease; }
-        .guide-control:hover { transform: translateY(-2px); background: #E7C779; }
-        .guide-control:active { transform: translateY(0); }
-        .guide-control:disabled { opacity: .45; cursor: not-allowed; transform: none; }
-        .guide-link { color: inherit; text-decoration: underline; text-decoration-color: #967126; text-underline-offset: 6px; transition: color .15s ease; }
-        .guide-link:hover { color: #795A1D; }
-        .guide-nav-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 11px; text-transform: uppercase; letter-spacing: .22em; text-decoration: none; }
-        .guide-nav-link:hover { text-decoration: underline; }
-        .guide a:focus-visible, .guide button:focus-visible { outline: 3px solid #795A1D; outline-offset: 5px; }
-        .guide .dark a:focus-visible { outline-color: var(--gold); }
-        .interaction-copy { max-width: 720px; margin-top: 32px; line-height: 1.6; }
-        .interaction-row { padding: 28px 0; border-top: 1px solid rgba(17,20,22,.16); }
-        .interaction-row h3 { font-size: 20px; font-weight: 500; margin-bottom: 12px; }
-        .interaction-row p { max-width: 720px; line-height: 1.6; margin-bottom: 20px; }
-        .guide-popover { max-width: min(440px, calc(100vw - 48px)); margin: auto; padding: 28px; background: #F5F2EB; color: #111416; border: 1px solid #967126; border-radius: 12px; line-height: 1.6; }
-        .guide-popover::backdrop { background: rgba(17,20,22,.45); }
-        @media (prefers-reduced-motion: reduce) { .guide-control { transition: none; } .guide-control:hover { transform: none; } }
-        .component-demo { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 48px; }
-        @media (max-width: 760px) { .grid { grid-template-columns: repeat(2, 1fr); } .layout-notes { grid-template-columns: 1fr; } .type-row { grid-template-columns: 1fr; gap: 12px; } .guide-header { align-items: flex-start; flex-direction: column; } }
-      `}</style>
-
-      <section className="guide-section dark">
-        <div className="eyebrow">Branding Matters</div>
+    <main className={styles["guide"]}>
+      <section className={[styles["guide-section"], styles["dark"]].join(" ")}>
+        <div className={styles["eyebrow"]}>Branding Matters</div>
         <h1>
-          Relata<span style={{ fontFamily: "Times, serif" }}>&apos;</span>s
-          <span className="text-[80%]"> v2</span>{" "}
-          <span className="italic">style</span> guide.
+          Relata<span className={styles["apostrophe"]}>&apos;</span>s
+          <span className={styles["version"]}> v2</span>{" "}
+          <span className={styles["italic"]}>style</span> guide.
         </h1>
-        <p className="guide-intro">
+        <p className={styles["guide-intro"]}>
           Codifying our design principles, beyond our{" "}
           <a
-            style={{ color: "#DDB45A", textDecoration: "underline" }}
+            className={styles["inspiration-link"]}
             href="https://www.luminatemarketing.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -133,15 +75,15 @@ export default function StyleGuide() {
         </p>
       </section>
 
-      <section className="guide-section">
-        <div className="eyebrow">01 / Color palette</div>
+      <section className={styles["guide-section"]}>
+        <div className={styles["eyebrow"]}>01 / Color palette</div>
         <h2>
-          Dark foundations. <span className="italic">Warm signals.</span>
+          Dark foundations. <span className={styles["italic"]}>Warm signals.</span>
         </h2>
-        <div className="grid">
+        <div className={styles["grid"]}>
           {colors.map((color) => (
             <div
-              className="swatch"
+              className={styles["swatch"]}
               key={color.name}
               style={{
                 background: color.value,
@@ -155,45 +97,45 @@ export default function StyleGuide() {
         </div>
       </section>
 
-      <section className="guide-section">
-        <div className="eyebrow">02 / Typography</div>
+      <section className={styles["guide-section"]}>
+        <div className={styles["eyebrow"]}>02 / Typography</div>
         <h2>
-          Artistic typography, <span className="italic">clear voice.</span>
+          Artistic typography, <span className={styles["italic"]}>clear voice.</span>
         </h2>
-        <div className="type-grid">
+        <div className={styles["type-grid"]}>
           {typeStyles.map((item) => (
-            <div className="type-row" key={item.label}>
+            <div className={styles["type-row"]} key={item.label}>
               <div>
-                <div className="type-label">{item.label}</div>
-                <div className="type-meta">{item.style}</div>
+                <div className={styles["type-label"]}>{item.label}</div>
+                <div className={styles["type-meta"]}>{item.style}</div>
               </div>
-              <div className={item.className}>{item.sample}</div>
+              <div className={styles[item.className]}>{item.sample}</div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="guide-section">
-        <div className="eyebrow">03 / Layout principles</div>
+      <section className={styles["guide-section"]}>
+        <div className={styles["eyebrow"]}>03 / Layout principles</div>
         <h2>
-          The rule of <span className="italic">threes.</span>
+          The rule of <span className={styles["italic"]}>threes.</span>
         </h2>
-        <div className="layout-notes">
-          <div className="note">
+        <div className={styles["layout-notes"]}>
+          <div className={styles["note"]}>
             <strong>Generous rhythm</strong>
             <p>
               Use large vertical sections, open margins, and intentional pauses
               between ideas.
             </p>
           </div>
-          <div className="note">
+          <div className={styles["note"]}>
             <strong>Asymmetric balance</strong>
             <p>
               Pair oversized editorial type with compact metadata and grounded
               body copy.
             </p>
           </div>
-          <div className="note">
+          <div className={styles["note"]}>
             <strong>Image-led mood</strong>
             <p>
               Use tactile, human imagery with dark overlays so type remains the
@@ -204,46 +146,46 @@ export default function StyleGuide() {
       </section>
       <section
         id="buttons-and-links"
-        className="guide-section"
+        className={styles["guide-section"]}
         aria-labelledby="interaction-title"
       >
-        <div className="eyebrow">04 / Buttons and links</div>
+        <div className={styles["eyebrow"]}>04 / Buttons and links</div>
         <h2 id="interaction-title">
-          Clear actions. <span className="italic">Useful connections.</span>
+          Clear actions. <span className={styles["italic"]}>Useful connections.</span>
         </h2>
-        <p className="interaction-copy">
+        <p className={styles["interaction-copy"]}>
           This is how our links, buttons, and interactive elements should appear
           and behave.
         </p>
-        <div className="type-grid">
-          <div className="interaction-row">
+        <div className={styles["type-grid"]}>
+          <div className={styles["interaction-row"]}>
             <h3>Primary CTA</h3>
             <p>
               Reserve the gold pill for the main next step. Use dark text, a
               compact uppercase label, generous spacing, and an optional arrow.
               Prefer specific labels such as “Start a conversation.”
             </p>
-            <a className="guide-control" href="/contact">
+            <a className={styles["guide-control"]} href="/contact">
               Start a conversation <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <div className="interaction-row">
+          <div className={styles["interaction-row"]}>
             <h3>Action buttons</h3>
             <p>
               Use a native button for actions. Set type="button" for controls
               and type="submit" for form submission. Keep disabled actions
               visibly muted and explain why they are unavailable nearby.
             </p>
-            <div className="component-demo" style={{ marginTop: 0 }}>
+            <div className={styles["component-demo"]}>
               <button
-                className="guide-control"
+                className={styles["guide-control"]}
                 type="button"
                 popoverTarget="guide-action-preview"
               >
                 Open example
               </button>
               <button
-                className="guide-control"
+                className={styles["guide-control"]}
                 type="button"
                 disabled
                 aria-describedby="disabled-explanation"
@@ -251,13 +193,13 @@ export default function StyleGuide() {
                 Submit
               </button>
             </div>
-            <p id="disabled-explanation" style={{ marginTop: 16 }}>
+            <p id="disabled-explanation" className={styles["disabled-explanation"]}>
               Submit is disabled in this example because there is no form to
               send.
             </p>
             <div
               id="guide-action-preview"
-              className="guide-popover"
+              className={styles["guide-popover"]}
               popover="auto"
             >
               <p>
@@ -265,7 +207,7 @@ export default function StyleGuide() {
                 uses links.
               </p>
               <button
-                className="guide-control"
+                className={styles["guide-control"]}
                 type="button"
                 popoverTarget="guide-action-preview"
                 popoverTargetAction="hide"
@@ -274,7 +216,7 @@ export default function StyleGuide() {
               </button>
             </div>
           </div>
-          <div className="interaction-row">
+          <div className={styles["interaction-row"]}>
             <h3>Text and navigation links</h3>
             <p>
               Underline links within copy so color is not the only cue.
@@ -283,19 +225,19 @@ export default function StyleGuide() {
               with aria-current="page". Use descriptive text that makes sense on
               its own.
             </p>
-            <div className="component-demo" style={{ marginTop: 0 }}>
-              <a className="guide-link" href="/services">
+            <div className={styles["component-demo"]}>
+              <a className={styles["guide-link"]} href="/services">
                 Explore our services <span aria-hidden="true">↗</span>
               </a>
-              <a className="guide-link" href="/#about">
+              <a className={styles["guide-link"]} href="/#about">
                 About Relata
               </a>
-              <a className="guide-link guide-nav-link" href="/contact">
+              <a className={[styles["guide-link"], styles["guide-nav-link"]].join(" ")} href="/contact">
                 Contact
               </a>
             </div>
           </div>
-          <div className="interaction-row">
+          <div className={styles["interaction-row"]}>
             <h3>Interaction and accessibility</h3>
             <p>
               Hover adds emphasis; pressing a button returns it to its resting
