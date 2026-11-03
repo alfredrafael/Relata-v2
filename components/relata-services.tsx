@@ -93,7 +93,7 @@ export default function RelataServices() {
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-40 top-24 -z-10 size-[620px] sm:right-[-100px]"
+          className="pointer-events-none absolute -right-40 top-24 -z-10 size-[620px] sm:right-[-100px] lg:rounded-full lg:border lg:border-[#d4af62]/15"
         >
           <div className="absolute inset-16 rounded-full border border-[#d4af62]/15" />
           <div className="absolute inset-32 rounded-full border border-[#d4af62]/15" />
