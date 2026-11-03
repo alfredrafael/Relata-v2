@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import styles from "./style-guide.module.css";
 
 const colors = [
@@ -76,9 +77,12 @@ export default function StyleGuide() {
       </section>
 
       <section className={styles["guide-section"]}>
-        <div className={styles["eyebrow"]}>01 / Color palette</div>
+        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#62615b]">
+          01 / Color palette
+        </p>
         <h2>
-          Dark foundations. <span className={styles["italic"]}>Warm signals.</span>
+          Dark foundations.{" "}
+          <span className={styles["italic"]}>Warm signals.</span>
         </h2>
         <div className={styles["grid"]}>
           {colors.map((color) => (
@@ -98,9 +102,12 @@ export default function StyleGuide() {
       </section>
 
       <section className={styles["guide-section"]}>
-        <div className={styles["eyebrow"]}>02 / Typography</div>
+        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#62615b]">
+          02 / Typography
+        </p>
         <h2>
-          Artistic typography, <span className={styles["italic"]}>clear voice.</span>
+          Artistic typography,{" "}
+          <span className={styles["italic"]}>clear voice.</span>
         </h2>
         <div className={styles["type-grid"]}>
           {typeStyles.map((item) => (
@@ -115,7 +122,7 @@ export default function StyleGuide() {
         </div>
       </section>
 
-      <section className={styles["guide-section"]}>
+      {/* <section className={styles["guide-section"]}>
         <div className={styles["eyebrow"]}>03 / Layout principles</div>
         <h2>
           The rule of <span className={styles["italic"]}>threes.</span>
@@ -143,15 +150,18 @@ export default function StyleGuide() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
       <section
         id="buttons-and-links"
         className={styles["guide-section"]}
         aria-labelledby="interaction-title"
       >
-        <div className={styles["eyebrow"]}>04 / Buttons and links</div>
+        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#62615b]">
+          03 / Buttons and links
+        </p>
         <h2 id="interaction-title">
-          Clear actions. <span className={styles["italic"]}>Useful connections.</span>
+          Clear actions.{" "}
+          <span className={styles["italic"]}>Useful connections.</span>
         </h2>
         <p className={styles["interaction-copy"]}>
           This is how our links, buttons, and interactive elements should appear
@@ -168,6 +178,46 @@ export default function StyleGuide() {
             <a className={styles["guide-control"]} href="/contact">
               Start a conversation <span aria-hidden="true">↗</span>
             </a>
+          </div>
+          <div className={styles["interaction-row"]}>
+            <h3>Outline CTA / dark background</h3>
+            <p>
+              Use the footer’s outline pill for a quieter invitation on dark
+              backgrounds. Pair a thin gold border with gold text and a
+              transparent fill. On hover, fill the button with gold and switch
+              the text to ink. Keep a visible gold keyboard focus ring.
+            </p>
+            <div
+              className={[styles["outline-preview"], styles["dark"]].join(" ")}
+            >
+              <a className={styles["outline-control"]} href="/contact">
+                Let’s connect <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <div className={styles["interaction-row"]}>
+            <h3>Outline CTA / light background</h3>
+            <p>
+              On paper or other light surfaces, use a dark ink outline and text
+              with a transparent fill. On hover, fill the pill with ink and
+              switch the text to paper. Use a dark keyboard focus ring.
+            </p>
+            <div
+              className={[
+                styles["outline-preview"],
+                styles["outline-preview-light"],
+              ].join(" ")}
+            >
+              <a
+                className={[
+                  styles["outline-control"],
+                  styles["outline-control-light"],
+                ].join(" ")}
+                href="/contact"
+              >
+                Let's connect <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </div>
           </div>
           <div className={styles["interaction-row"]}>
             <h3>Action buttons</h3>
@@ -193,7 +243,10 @@ export default function StyleGuide() {
                 Submit
               </button>
             </div>
-            <p id="disabled-explanation" className={styles["disabled-explanation"]}>
+            <p
+              id="disabled-explanation"
+              className={styles["disabled-explanation"]}
+            >
               Submit is disabled in this example because there is no form to
               send.
             </p>
@@ -232,7 +285,13 @@ export default function StyleGuide() {
               <a className={styles["guide-link"]} href="/#about">
                 About Relata
               </a>
-              <a className={[styles["guide-link"], styles["guide-nav-link"]].join(" ")} href="/contact">
+              <a
+                className={[
+                  styles["guide-link"],
+                  styles["guide-nav-link"],
+                ].join(" ")}
+                href="/contact"
+              >
                 Contact
               </a>
             </div>

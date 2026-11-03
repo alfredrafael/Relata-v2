@@ -34,7 +34,7 @@ const team = [
     color: "#66705D",
   },
   {
-    name: "Ryandom Huaitgurl",
+    name: "Ryandom Huait-Gyrl",
     image:
       "https://www.alfredorafael.com/wp-content/uploads/2026/11/Rayndom-Huaitgrl.jpg",
     role: "Creative director",
