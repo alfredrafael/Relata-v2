@@ -115,10 +115,12 @@ export default function StyleGuide() {
       <section className="guide-section dark">
         <div className="eyebrow">Branding Matters</div>
         <h1>
-          Relata&apos;s v2 <span className="italic">style</span> guide.
+          Relata<span style={{ fontFamily: "Times, serif" }}>&apos;</span>s
+          <span className="text-[80%]"> v2</span>{" "}
+          <span className="italic">style</span> guide.
         </h1>
         <p className="guide-intro">
-          Codifying our design principles, reaching beyond our{" "}
+          Codifying our design principles, beyond our{" "}
           <a
             style={{ color: "#DDB45A", textDecoration: "underline" }}
             href="https://www.luminatemarketing.com/"
