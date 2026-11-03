@@ -2,7 +2,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import RelataHeader from "@/components/relata-header";
-import { Footer } from "@/components/layout/footer";
+import RelataFooter from "@/components/relata-footer";
 import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/site.config";
@@ -40,8 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="bg-[#101314] overscroll-y-none motion-safe:scroll-smooth" suppressHydrationWarning>
       <body
+        id="page-top"
         className={cn("min-h-screen font-sans antialiased")}
         suppressHydrationWarning
       >
@@ -53,7 +54,7 @@ export default function RootLayout({
         >
           <RelataHeader />
           {children}
-          <Footer />
+          <RelataFooter />
         </ThemeProvider>
         <Analytics />
       </body>

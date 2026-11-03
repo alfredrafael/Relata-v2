@@ -118,8 +118,8 @@ export default function StyleGuide() {
           Relata&apos;s v2 <span className="italic">style</span> guide.
         </h1>
         <p className="guide-intro">
-          Codifying our website's design principles while setting a solid
-          departure from our{" "}
+          Codifying our website's design principles. This is a solid departure
+          from our{" "}
           <a
             style={{ color: "#DDB45A", textDecoration: "underline" }}
             href="https://www.luminatemarketing.com/"
@@ -128,7 +128,7 @@ export default function StyleGuide() {
           >
             original inspiration
           </a>
-          . Open to review and further iteration!
+          . All is open to review and further iteration!
         </p>
       </section>
 
@@ -200,17 +200,19 @@ export default function StyleGuide() {
             </p>
           </div>
         </div>
-
       </section>
-      <section id="buttons-and-links" className="guide-section" aria-labelledby="interaction-title">
+      <section
+        id="buttons-and-links"
+        className="guide-section"
+        aria-labelledby="interaction-title"
+      >
         <div className="eyebrow">04 / Buttons and links</div>
         <h2 id="interaction-title">
           Clear actions. <span className="italic">Useful connections.</span>
         </h2>
         <p className="interaction-copy">
-          Use a button to perform an action, such as submitting a form or opening
-          a menu. Use a link to navigate to a page, section, or external resource.
-          A navigation CTA can look like a button while remaining a link.
+          This is how our links, buttons, and interactive elements should appear
+          and behave.
         </p>
         <div className="type-grid">
           <div className="interaction-row">
@@ -228,23 +230,45 @@ export default function StyleGuide() {
             <h3>Action buttons</h3>
             <p>
               Use a native button for actions. Set type="button" for controls
-              and type="submit" for form submission. Keep disabled actions visibly
-              muted and explain why they are unavailable nearby.
+              and type="submit" for form submission. Keep disabled actions
+              visibly muted and explain why they are unavailable nearby.
             </p>
             <div className="component-demo" style={{ marginTop: 0 }}>
-              <button className="guide-control" type="button" popoverTarget="guide-action-preview">
+              <button
+                className="guide-control"
+                type="button"
+                popoverTarget="guide-action-preview"
+              >
                 Open example
               </button>
-              <button className="guide-control" type="button" disabled aria-describedby="disabled-explanation">
+              <button
+                className="guide-control"
+                type="button"
+                disabled
+                aria-describedby="disabled-explanation"
+              >
                 Submit
               </button>
             </div>
             <p id="disabled-explanation" style={{ marginTop: 16 }}>
-              Submit is disabled in this example because there is no form to send.
+              Submit is disabled in this example because there is no form to
+              send.
             </p>
-            <div id="guide-action-preview" className="guide-popover" popover="auto">
-              <p>This button opened a popover. Actions use buttons; navigation uses links.</p>
-              <button className="guide-control" type="button" popoverTarget="guide-action-preview" popoverTargetAction="hide">
+            <div
+              id="guide-action-preview"
+              className="guide-popover"
+              popover="auto"
+            >
+              <p>
+                This button opened a popover. Actions use buttons; navigation
+                uses links.
+              </p>
+              <button
+                className="guide-control"
+                type="button"
+                popoverTarget="guide-action-preview"
+                popoverTargetAction="hide"
+              >
                 Close example
               </button>
             </div>
@@ -252,15 +276,22 @@ export default function StyleGuide() {
           <div className="interaction-row">
             <h3>Text and navigation links</h3>
             <p>
-              Underline links within copy so color is not the only cue. Secondary
-              CTAs use a gold underline and may include an arrow. Navigation uses
-              compact uppercase labels; mark the current page with aria-current="page".
-              Use descriptive text that makes sense on its own.
+              Underline links within copy so color is not the only cue.
+              Secondary CTAs use a gold underline and may include an arrow.
+              Navigation uses compact uppercase labels; mark the current page
+              with aria-current="page". Use descriptive text that makes sense on
+              its own.
             </p>
             <div className="component-demo" style={{ marginTop: 0 }}>
-              <a className="guide-link" href="/services">Explore our services <span aria-hidden="true">↗</span></a>
-              <a className="guide-link" href="/#about">About Relata</a>
-              <a className="guide-link guide-nav-link" href="/contact">Contact</a>
+              <a className="guide-link" href="/services">
+                Explore our services <span aria-hidden="true">↗</span>
+              </a>
+              <a className="guide-link" href="/#about">
+                About Relata
+              </a>
+              <a className="guide-link guide-nav-link" href="/contact">
+                Contact
+              </a>
             </div>
           </div>
           <div className="interaction-row">
@@ -268,10 +299,11 @@ export default function StyleGuide() {
             <p>
               Hover adds emphasis; pressing a button returns it to its resting
               position. Keyboard focus must have a visible outline on both light
-              and dark surfaces. Keep controls at least 44px tall, respect reduced
-              motion preferences, and give icon-only controls an accessible name.
-              Links activate with Enter; buttons activate with Enter or Space.
-              Decorative arrows stay hidden from assistive technology.
+              and dark surfaces. Keep controls at least 44px tall, respect
+              reduced motion preferences, and give icon-only controls an
+              accessible name. Links activate with Enter; buttons activate with
+              Enter or Space. Decorative arrows stay hidden from assistive
+              technology.
             </p>
           </div>
         </div>

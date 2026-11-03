@@ -1,7 +1,6 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import ServicesHeroImage from "@/components/services-hero-image";
 import RelataContact from "@/components/relata-contact";
-import RelataFooter from "@/components/relata-footer";
 
 const services = [
   { title: "Video production", tag: "Film / Storytelling", copy: "Bring your message into focus with video that gives people a reason to watch, connect, and act.", items: ["Promotional videos", "Social media videos", "Evergreen videos"] },
@@ -63,7 +62,6 @@ export default function RelataServices() {
         <div><h2 id="approach-title" className="text-4xl font-medium leading-tight tracking-[-.04em] sm:text-6xl">Start with your <em className="font-serif font-normal text-[#b58d3a]">purpose.</em><br />Build from there.</h2><p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">What are you trying to change? Who do you need to reach? We start with your story and your goals, then bring thoughtful strategy, expressive content, and creative technology together around them.</p><a href="#contact" className="mt-9 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] underline decoration-[#b58d3a] underline-offset-8">Tell us what you’re imagining <ArrowUpRight className="size-4 text-[#b58d3a]" /></a></div>
       </section>
       <RelataContact />
-      <RelataFooter />
     </main>
   );
 }

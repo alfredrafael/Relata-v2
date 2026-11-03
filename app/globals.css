@@ -167,3 +167,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes page-enter {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-transition {
+    animation: page-enter 240ms ease-out;
+  }
+}

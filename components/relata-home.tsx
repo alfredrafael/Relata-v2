@@ -1,8 +1,7 @@
-"use client";
+import Link from "next/link";
 
 import { ArrowUpRight } from "lucide-react";
 import RelataContact from "@/components/relata-contact";
-import RelataFooter from "@/components/relata-footer";
 
 const services = [
   {
@@ -34,7 +33,6 @@ const services = [
 export default function RelataHome() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
-
       <section
         id="top"
         className="relative isolate flex min-h-[760px] items-end overflow-hidden bg-[#101314] pt-28 text-white lg:min-h-screen"
@@ -45,14 +43,11 @@ export default function RelataHome() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden="true"
           tabIndex={-1}
         >
-          <source
-            src="/media/relata-hero.mp4"
-            type="video/mp4"
-          />
+          <source src="/media/relata-hero.mp4" type="video/mp4" />
         </video>
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(16,19,20,.92)_0%,rgba(16,19,20,.75)_38%,rgba(16,19,20,.4)_72%,rgba(16,19,20,.35)_100%)]" />
         <div className="relative mx-auto grid w-full max-w-7xl gap-16 px-6 pb-20 lg:grid-cols-[1.1fr_.9fr] lg:px-10 lg:pb-24">
@@ -74,13 +69,13 @@ export default function RelataHome() {
                 Relata is a digital media agency for organizations building a
                 more connected, more human world.
               </p>
-              <a
+              <Link
                 href="#contact"
                 className="inline-flex shrink-0 items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white underline decoration-[#d4af62] underline-offset-8"
               >
                 Tell us your story{" "}
                 <ArrowUpRight className="size-4 text-[#d4af62]" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="hidden items-end justify-end lg:flex">
@@ -137,7 +132,12 @@ export default function RelataHome() {
                 people.
               </h2>
             </div>
-            <a href="/services" className="inline-flex shrink-0 items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] underline decoration-[#b58d3a] underline-offset-8">All services <ArrowUpRight className="size-4 text-[#b58d3a]" /></a>
+            <Link
+              href="/services"
+              className="inline-flex shrink-0 items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] underline decoration-[#b58d3a] underline-offset-8"
+            >
+              All services <ArrowUpRight className="size-4 text-[#b58d3a]" />
+            </Link>
           </div>
           <div className="grid border-t border-foreground/20 md:grid-cols-2">
             {services.map((service) => (
@@ -163,12 +163,60 @@ export default function RelataHome() {
               </article>
             ))}
           </div>
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 rounded-full bg-[#d4af62] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#101314] transition-transform hover:-translate-y-0.5"
+            >
+              All services <ArrowUpRight className="size-4 text-[#000000]" />
+            </Link>
+          </div>
         </div>
       </section>
 
       <RelataContact />
 
-      <RelataFooter />
+      <section
+        aria-labelledby="people-first-title"
+        className="relative isolate overflow-hidden bg-[#e8e5dc] px-6 py-16 text-[#101314] lg:px-10 lg:py-24"
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-32 -z-10 size-[420px] rounded-full border border-[#967126]/20"
+        >
+          <div className="absolute inset-12 rounded-full border border-[#967126]/15" />
+          <div className="absolute inset-24 rounded-full border border-[#967126]/15" />
+        </div>
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[.75fr_1.25fr] lg:gap-12">
+          <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#62615b]">
+            04 / Behind every connection
+          </p>
+          <div className="max-w-3xl">
+            <h2
+              id="people-first-title"
+              className="text-4xl font-medium leading-tight tracking-[-.04em] sm:text-6xl"
+            >
+              People first.{" "}
+              <em className="font-serif font-normal text-[#967126]">Always.</em>
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-[#62615b] sm:text-lg">
+              Behind every story is a person. Behind every project is a team
+              ready to listen, ask better questions, and make something
+              meaningful together.
+            </p>
+            <Link
+              href="/the-team"
+              className="mt-6 inline-flex min-h-11 items-center gap-3 text-[11px] font-bold uppercase tracking-[0.16em] underline decoration-[#967126] underline-offset-8 transition-colors hover:text-[#795a1d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#795a1d]"
+            >
+              Meet the team{" "}
+              <ArrowUpRight
+                className="size-4 text-[#967126]"
+                aria-hidden="true"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
