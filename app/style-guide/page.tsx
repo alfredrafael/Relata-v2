@@ -118,8 +118,7 @@ export default function StyleGuide() {
           Relata&apos;s v2 <span className="italic">style</span> guide.
         </h1>
         <p className="guide-intro">
-          Codifying our website's design principles. This is a solid departure
-          from our{" "}
+          Codifying our design principles, reaching beyond our{" "}
           <a
             style={{ color: "#DDB45A", textDecoration: "underline" }}
             href="https://www.luminatemarketing.com/"
@@ -128,7 +127,7 @@ export default function StyleGuide() {
           >
             original inspiration
           </a>
-          . All is open to review and further iteration!
+          . All open to review and further iterations.
         </p>
       </section>
 
