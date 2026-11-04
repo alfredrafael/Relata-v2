@@ -185,10 +185,10 @@ export default function Home() {
                 <h3 className="mt-14 text-3xl font-medium capitalize tracking-[-.03em] transition-colors group-hover:text-[#a27b2e]">
                   {service.title}
                 </h3>
-                <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+                <p className="mt-4 mb-6 max-w-md text-base leading-relaxed text-muted-foreground">
                   {service.copy}
                 </p>
-                <ArrowUpRight className="mt-8 size-5 text-[#b58d3a] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                {/* <ArrowUpRight className="mt-8 size-5 text-[#b58d3a] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /> */}
               </article>
             ))}
           </div>
