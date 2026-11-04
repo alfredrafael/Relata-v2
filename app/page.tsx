@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import RelataContact from "@/components/relata-contact";
 import { homepageServices } from "@/app/data/homepageServices";
+import HeroVideo from "@/components/hero-video";
 
 const thumbnail = {
   url: "https://wp-media.petersons.com/blog/wp-content/uploads/2018/02/10125100/iStock-603997846.jpg",
@@ -37,18 +38,7 @@ export default function Home() {
         id="top"
         className="relative isolate flex min-h-[760px] items-end overflow-hidden bg-[#101314] pt-28 text-white lg:min-h-screen"
       >
-        <video
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          tabIndex={-1}
-        >
-          <source src="/media/relata-hero.mp4" type="video/mp4" />
-        </video>
+        <HeroVideo />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(16,19,20,.92)_0%,rgba(16,19,20,.75)_38%,rgba(16,19,20,.4)_72%,rgba(16,19,20,.35)_100%)]" />
         <div className="relative mx-auto grid w-full max-w-7xl gap-16 px-6 pb-20 lg:grid-cols-[1.1fr_.9fr] lg:px-10 lg:pb-24">
           <div className="max-w-3xl">
