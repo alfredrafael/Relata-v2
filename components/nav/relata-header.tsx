@@ -5,14 +5,28 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { navbarData } from "@/app/data/navbarData";
 
 export default function RelataHeader() {
   const pathname = usePathname();
   const home = pathname === "/";
   const services = pathname === "/services";
-  const contactHref =
-    home || services || pathname === "/contact" ? "#contact" : "/contact";
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const resolveHref = (href: string) => {
+    const [path, hash] = href.split("#");
+    if (!hash) {
+      // On pages with an inline contact section, jump to the anchor instead
+      if (href === "/contact" && (home || services || pathname === href)) {
+        return "#contact";
+      }
+      return href;
+    }
+    // Same-page anchor when already on the target page
+    return pathname === path ? `#${hash}` : href;
+  };
+
+  const contactHref = resolveHref("/contact");
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101314]/85 text-white backdrop-blur-md">
@@ -35,32 +49,20 @@ export default function RelataHeader() {
             className="hidden items-center gap-9 text-[11px] font-medium uppercase tracking-[0.22em] lg:flex"
             aria-label="Main navigation"
           >
-            <Link
-              className="transition-colors hover:text-[#d4af62]"
-              href={home ? "#about" : "/#about"}
-            >
-              About
-            </Link>
-            <Link
-              className="transition-colors hover:text-[#d4af62]"
-              href="/services"
-              aria-current={services ? "page" : undefined}
-            >
-              Services
-            </Link>
-            {/* <Link
-              className="transition-colors hover:text-[#d4af62]"
-              href="/the-team"
-              aria-current={pathname === "/the-team" ? "page" : undefined}
-            >
-              The team
-            </Link> */}
-            <Link
-              className="transition-colors hover:text-[#d4af62]"
-              href={contactHref}
-            >
-              Contact
-            </Link>
+            {navbarData.map((item) => (
+              <Link
+                key={item.label}
+                className="transition-colors hover:text-[#d4af62]"
+                href={resolveHref(item.href)}
+                aria-current={
+                  pathname === item.href.split("#")[0] && item.href.split("#")[0] !== "/"
+                    ? "page"
+                    : undefined
+                }
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
           <Link
             href={contactHref}
@@ -79,25 +81,20 @@ export default function RelataHeader() {
         </div>
         {menuOpen && (
           <nav className="flex flex-col gap-5 border-t border-white/10 px-6 py-6 text-xs uppercase tracking-[0.2em] lg:hidden">
-            <Link
-              href={home ? "#about" : "/#about"}
-              onClick={() => setMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              aria-current={services ? "page" : undefined}
-              onClick={() => setMenuOpen(false)}
-            >
-              Services
-            </Link>
-            {/* <Link href="/the-team" aria-current={pathname === "/the-team" ? "page" : undefined} onClick={() => setMenuOpen(false)}>
-              The team
-            </Link> */}
-            <Link href={contactHref} onClick={() => setMenuOpen(false)}>
-              Contact
-            </Link>
+            {navbarData.map((item) => (
+              <Link
+                key={item.label}
+                href={resolveHref(item.href)}
+                aria-current={
+                  pathname === item.href.split("#")[0] && item.href.split("#")[0] !== "/"
+                    ? "page"
+                    : undefined
+                }
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
         )}
       </header>

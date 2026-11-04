@@ -114,13 +114,6 @@ export default function RelataServices() {
                     </li>
                   ))}
                 </ul>
-                {/* <a
-                  href="#contact"
-                  className="mt-auto inline-flex w-fit items-center gap-3 text-[10px] font-bold uppercase tracking-[0.16em] underline decoration-[#967126]/50 underline-offset-8 transition-colors hover:text-[#967126]"
-                >
-                  Let’s talk {service.title.toLowerCase()}{" "}
-                  <ArrowUpRight className="size-4 shrink-0 text-[#967126]" />
-                </a> */}
               </article>
             ))}
           </div>

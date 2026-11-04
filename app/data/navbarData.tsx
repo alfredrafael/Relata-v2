@@ -1,5 +1,10 @@
-export const mainMenu = {
-  home: "/",
-  services: "/resume",
-  contact: "/contact",
+export type NavItem = {
+  label: string;
+  href: string;
 };
+
+export const navbarData: NavItem[] = [
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
+];

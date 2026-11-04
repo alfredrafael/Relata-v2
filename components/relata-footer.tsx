@@ -69,11 +69,6 @@ export default function RelataFooter() {
                   Our services
                 </Link>
               </li>
-              {/* <li>
-                <Link href="/the-team" className={linkClassName}>
-                  The team
-                </Link>
-              </li> */}
               <li>
                 <Link href="/contact" className={linkClassName}>
                   Start a conversation
