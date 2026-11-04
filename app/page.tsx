@@ -205,7 +205,7 @@ export default function Home() {
 
       <RelataContact />
 
-      <section
+      {/* <section
         aria-labelledby="people-first-title"
         className="relative isolate overflow-hidden bg-[#e8e5dc] px-6 py-16 text-[#101314] lg:px-10 lg:py-24"
       >
@@ -233,7 +233,7 @@ export default function Home() {
               ready to listen, ask better questions, and make something
               meaningful together.
             </p>
-            {/* <Link
+            <Link
               href="/the-team"
               className="mt-6 inline-flex min-h-11 items-center gap-3 text-[11px] font-bold uppercase tracking-[0.16em] underline decoration-[#967126] underline-offset-8 transition-colors hover:text-[#795a1d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#795a1d]"
             >
@@ -242,10 +242,10 @@ export default function Home() {
                 className="size-4 text-[#967126]"
                 aria-hidden="true"
               />
-            </Link> */}
+            </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

@@ -6,8 +6,8 @@ const linkClassName =
 
 export default function RelataFooter() {
   return (
-    <footer className="border-t border-white/15 bg-[#101314] text-white">
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 lg:px-10 lg:pt-24">
+    <footer className="flex min-h-[calc(100svh-81px)] flex-col border-t border-white/15 bg-[#101314] text-white">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pb-8 pt-16 lg:px-10 lg:pt-24">
         <div className="flex flex-col items-start justify-between gap-8 border-b border-white/15 pb-12 sm:flex-row sm:items-end lg:pb-16">
           <div>
             <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.24em] text-[#d4af62]">
