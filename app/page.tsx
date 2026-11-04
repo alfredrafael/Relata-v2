@@ -172,8 +172,13 @@ export default function Home() {
                     {service.tag}
                   </span>
                 </div>
-                <h3 className="mt-14 text-3xl font-medium capitalize tracking-[-.03em] transition-colors group-hover:text-[#a27b2e]">
-                  {service.title}
+                <h3 className="mt-14 flex items-center gap-3 text-3xl font-medium capitalize tracking-[-.03em] transition-colors group-hover:text-[#a27b2e]">
+                  <service.icon
+                    className="size-6 shrink-0 text-[#967126]"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                  <span>{service.title}</span>
                 </h3>
                 <p className="mt-4 mb-6 max-w-md text-base leading-relaxed text-muted-foreground">
                   {service.copy}

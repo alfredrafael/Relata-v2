@@ -117,8 +117,13 @@ export default function ServicesPage() {
                   <span>0{index + 1}</span>
                   <span>{service.tag}</span>
                 </div>
-                <h3 className="mt-10 text-3xl font-medium tracking-[-.03em] sm:text-4xl">
-                  {service.title}
+                <h3 className="mt-10 flex items-center gap-3 text-3xl font-medium tracking-[-.03em] sm:text-4xl">
+                  <service.icon
+                    className="size-6 shrink-0 text-[#967126]"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                  <span>{service.title}</span>
                 </h3>
                 <p className="mb-7 mt-5 max-w-lg leading-relaxed text-[#62615b]">
                   {service.copy}
