@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { navbarData } from "@/app/data/navbarData";
@@ -12,6 +12,59 @@ export default function RelataHeader() {
   const home = pathname === "/";
   const services = pathname === "/services";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState({ pathname: "", href: "" });
+
+  useEffect(() => {
+    const sections = home
+      ? [
+          { id: "top", href: "/" },
+          { id: "about", href: "/#about" },
+          { id: "services", href: "/services" },
+          { id: "contact", href: "/contact" },
+        ]
+      : services
+        ? [{ id: "contact", href: "/contact" }]
+        : [];
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      let href = pathname;
+      for (const section of sections) {
+        const element = document.getElementById(section.id);
+        // Switch as a section reaches just below the fixed navbar.
+        if (element && element.getBoundingClientRect().top <= 105) {
+          href = section.href;
+        }
+      }
+      setActiveSection((current) =>
+        current.pathname === pathname && current.href === href
+          ? current
+          : { pathname, href },
+      );
+    };
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
+  }, [pathname, home, services]);
+
+  const activeHref =
+    activeSection.pathname === pathname ? activeSection.href : pathname;
+  const currentLocation = (href: string) => {
+    if (href !== activeHref) return undefined;
+    return href === pathname ? "page" : "location";
+  };
+  const navLinkClassName = (href: string) =>
+    `transition-colors hover:text-[#d4af62]${href === activeHref ? " text-[#d4af62]" : ""}`;
 
   const resolveHref = (href: string) => {
     const [path, hash] = href.split("#");
@@ -52,13 +105,9 @@ export default function RelataHeader() {
             {navbarData.map((item) => (
               <Link
                 key={item.label}
-                className="transition-colors hover:text-[#d4af62]"
+                className={navLinkClassName(item.href)}
                 href={resolveHref(item.href)}
-                aria-current={
-                  pathname === item.href.split("#")[0] && item.href.split("#")[0] !== "/"
-                    ? "page"
-                    : undefined
-                }
+                aria-current={currentLocation(item.href)}
               >
                 {item.label}
               </Link>
@@ -84,12 +133,9 @@ export default function RelataHeader() {
             {navbarData.map((item) => (
               <Link
                 key={item.label}
+                className={navLinkClassName(item.href)}
                 href={resolveHref(item.href)}
-                aria-current={
-                  pathname === item.href.split("#")[0] && item.href.split("#")[0] !== "/"
-                    ? "page"
-                    : undefined
-                }
+                aria-current={currentLocation(item.href)}
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
