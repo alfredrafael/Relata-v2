@@ -9,6 +9,11 @@ const title = "Services | Relata";
 const description =
   "Explore Relata's video production, social media marketing, creative direction, editorial, cloud management, spokesperson training, podcast production, and advertising services.";
 
+const thumbnail = {
+  url: "https://www.alfredorafael.com/wp-content/uploads/2026/11/Relata-Services-Thumbnail.png",
+  alt: "Relata Digital Presence",
+};
+
 export const metadata: Metadata = {
   title,
   description,
@@ -19,8 +24,9 @@ export const metadata: Metadata = {
     siteName: siteConfig.site_name,
     title,
     description,
+    images: [thumbnail],
   },
-  twitter: { card: "summary", title, description },
+  twitter: { card: "summary", title, description, images: [thumbnail] },
 };
 
 export default function ServicesPage() {
@@ -41,6 +47,7 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#101314_0%,rgba(16,19,20,0.85)_35%,rgba(16,19,20,0.5)_100%)] md:bg-[linear-gradient(90deg,#101314_10%,rgba(16,19,20,0.9)_35%,rgba(16,19,20,0.3)_75%)]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#101314] via-transparent to-[#101314]/20" />
         </div>
+        {/* Circles begin */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-40 top-24 -z-10 size-[620px] sm:right-[-100px] lg:rounded-full lg:border lg:border-[#d4af62]/15"
@@ -49,6 +56,7 @@ export default function ServicesPage() {
           <div className="absolute inset-32 rounded-full border border-[#d4af62]/15" />
           <div className="absolute inset-48 rounded-full border border-[#d4af62]/15" />
         </div>
+        {/* Circles end */}
         <div className="mx-auto max-w-7xl">
           <p className="mb-8 flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-[#d4af62]">
             <span className="size-2 rounded-full bg-[#d4af62]" /> Our services
