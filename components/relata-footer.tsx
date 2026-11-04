@@ -47,7 +47,7 @@ export default function RelataFooter() {
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
               Thoughtful strategy. Expressive content. Creative technology.
-              Digital communications for a more connected world.
+              Digital communications for a relational world.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ export default function RelataFooter() {
               Our perspective
             </p>
             <p className="max-w-xs text-md leading-relaxed tracking-tight text-white/75">
-              A more human world starts with how we connect. Lets build
+              A more human world starts with how we connect. Let's build
               meaningful relationships through thoughtful digital experiences.
             </p>
           </div>

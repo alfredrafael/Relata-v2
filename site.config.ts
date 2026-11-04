@@ -6,7 +6,6 @@ type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   site_name: "Relata",
-  site_description:
-    "Relata official website.",
+  site_description: "Relata official website.",
   site_domain: "https://relata.us",
 };

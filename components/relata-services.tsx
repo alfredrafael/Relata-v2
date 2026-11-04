@@ -1,77 +1,7 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import ServicesHeroImage from "@/components/services-hero-image";
 import RelataContact from "@/components/relata-contact";
-
-const services = [
-  {
-    title: "Video production",
-    tag: "Film / Storytelling",
-    copy: "Bring your message into focus with video that gives people a reason to watch, connect, and act.",
-    items: ["Promotional videos", "Social media videos", "Evergreen videos"],
-  },
-  {
-    title: "Social media marketing",
-    tag: "Community / Connection",
-    copy: "Build a consistent presence where your audience already gathers, with content that keeps the conversation going.",
-    items: [
-      "Account management",
-      "Post writing and design",
-      "Content calendars and scheduling",
-    ],
-  },
-  {
-    title: "Creative direction",
-    tag: "Identity / Expression",
-    copy: "Give your story a clear creative point of view, from the first visual idea to the final production.",
-    items: [
-      "Art direction and design",
-      "Video production",
-      "Brand style guides",
-    ],
-  },
-  {
-    title: "Editorial services",
-    tag: "Words / Ideas",
-    copy: "Turn complex ideas into clear, compelling stories that sound like you and speak to your audience.",
-    items: [
-      "Writing and revision",
-      "Feature articles and essays",
-      "Earned and paid media",
-    ],
-  },
-  {
-    title: "Cloud management",
-    tag: "Technology / Collaboration",
-    copy: "Support the everyday connections that make your organization work, with help managing your cloud tools.",
-    items: ["Cloud storage", "Email", "Messaging tools"],
-  },
-  {
-    title: "Spokesperson training",
-    tag: "Voice / Presence",
-    copy: "Develop an online presence and personality that make your message recognizable and your brand more human.",
-    items: [
-      "Online presence development",
-      "On-camera personality",
-      "Brand recognition",
-    ],
-  },
-  {
-    title: "Podcast production",
-    tag: "Audio / Video",
-    copy: "Make your conversations worth pressing play on, with production support that carries your voice to your listeners.",
-    items: ["Audio and video editing", "Mixing", "Distribution"],
-  },
-  {
-    title: "Social advertising",
-    tag: "Campaigns / Action",
-    copy: "Put your message in motion with creative that supports your campaigns and gives people a clear next step.",
-    items: [
-      "Logos and brand guides",
-      "Fundraising campaigns",
-      "Key-message creative",
-    ],
-  },
-];
+import { allServices } from "@/app/data/allServices";
 
 export default function RelataServices() {
   return (
@@ -158,7 +88,7 @@ export default function RelataServices() {
             </div>
           </div>
           <div className="grid border-t border-[#101314]/20 md:grid-cols-2">
-            {services.map((service, index) => (
+            {allServices.map((service, index) => (
               <article
                 key={service.title}
                 className="flex flex-col border-b border-[#101314]/20 py-9 md:odd:border-r md:odd:pr-10 md:even:pl-10 lg:py-12"
@@ -184,13 +114,13 @@ export default function RelataServices() {
                     </li>
                   ))}
                 </ul>
-                <a
+                {/* <a
                   href="#contact"
                   className="mt-auto inline-flex w-fit items-center gap-3 text-[10px] font-bold uppercase tracking-[0.16em] underline decoration-[#967126]/50 underline-offset-8 transition-colors hover:text-[#967126]"
                 >
                   Let’s talk {service.title.toLowerCase()}{" "}
                   <ArrowUpRight className="size-4 shrink-0 text-[#967126]" />
-                </a>
+                </a> */}
               </article>
             ))}
           </div>
@@ -215,7 +145,7 @@ export default function RelataServices() {
             Build from there.
           </h2>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            What are you trying to change? Who do you need to reach? We start
+            What are you trying to change? Whom do you need to reach? We start
             with your story and your goals, then bring thoughtful strategy,
             expressive content, and creative technology together around them.
           </p>
