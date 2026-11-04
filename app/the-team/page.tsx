@@ -73,7 +73,10 @@ const team = [
 
 export default function TeamPage() {
   return (
-    <main className="bg-[#f5f2eb] text-[#101314]">
+    <main
+      className="bg-[#f5f2eb] text-[#101314]"
+      style={{ visibility: "hidden" }}
+    >
       <RelataPageHero
         eyebrowText="The team"
         mainText={

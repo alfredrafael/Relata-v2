@@ -7,7 +7,7 @@ import { homepageServices } from "@/app/data/homepageServices";
 import HeroVideo from "@/components/hero-video";
 
 const thumbnail = {
-  url: "https://wp-media.petersons.com/blog/wp-content/uploads/2018/02/10125100/iStock-603997846.jpg",
+  url: "https://www.alfredorafael.com/wp-content/uploads/2026/11/Relata-Thumbnail.png",
   alt: "Relata Digital Presence",
 };
 
