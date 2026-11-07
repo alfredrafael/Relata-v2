@@ -24,28 +24,28 @@ Open [localhost:3000](http://localhost:3000). Development uses Turbopack. EmailJ
 
 ## Commands
 
-| Command | Purpose |
-| --- | --- |
-| `pnpm dev` | Start the development server with Turbopack. |
-| `pnpm build` | Create a production build and standalone server output. |
-| `pnpm start` | Serve a production build; run `pnpm build` first. |
-| `pnpm exec tsc --noEmit` | Check TypeScript without emitting files. |
+| Command                  | Purpose                                                 |
+| ------------------------ | ------------------------------------------------------- |
+| `pnpm dev`               | Start the development server with Turbopack.            |
+| `pnpm build`             | Create a production build and standalone server output. |
+| `pnpm start`             | Serve a production build; run `pnpm build` first.       |
+| `pnpm exec tsc --noEmit` | Check TypeScript without emitting files.                |
 
 The existing `pnpm lint` script invokes `next lint`, which is unavailable in Next.js 16. It needs migration to the ESLint CLI and compatible configuration before it can serve as a validation step. There is currently no automated test script.
 
 ## Pages and endpoints
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Homepage with introduction, service highlights, and contact form. |
-| `/services` | Full service offering. |
-| `/the-team` | Team profiles. |
-| `/contact` | Standalone contact page. |
-| `/style-guide` | Visual reference for typography, colors, and interactions. |
-| `/api/contact-config` | Runtime public EmailJS configuration for the browser. |
-| `/api/og?title=Relata&description=Hello` | Generate a 1200 × 630 Open Graph image. |
-| `/sitemap.xml` | Sitemap for the homepage, contact, services, and team pages. |
-| `/robots.txt` | Crawler rules and sitemap location. |
+| Route                                    | Purpose                                                           |
+| ---------------------------------------- | ----------------------------------------------------------------- |
+| `/`                                      | Homepage with introduction, service highlights, and contact form. |
+| `/services`                              | Full service offering.                                            |
+| `/the-team`                              | Team profiles (temporarily hidden).                               |
+| `/contact`                               | Standalone contact page.                                          |
+| `/style-guide`                           | Visual reference for typography, colors, and interactions.        |
+| `/api/contact-config`                    | Runtime public EmailJS configuration for the browser.             |
+| `/api/og?title=Relata&description=Hello` | Generate a 1200 × 630 Open Graph image.                           |
+| `/sitemap.xml`                           | Sitemap for the homepage, contact, services, and team pages.      |
+| `/robots.txt`                            | Crawler rules and sitemap location.                               |
 
 ## Project structure
 
@@ -108,12 +108,12 @@ On submission, the browser fetches `/api/contact-config` without caching and sen
 
 Configure the EmailJS template with these parameters:
 
-| Parameter | Value |
-| --- | --- |
-| `user_name` | Full name |
-| `user_email` | Email address |
+| Parameter    | Value                 |
+| ------------ | --------------------- |
+| `user_name`  | Full name             |
+| `user_email` | Email address         |
 | `user_phone` | Optional phone number |
-| `message` | Inquiry text |
+| `message`    | Inquiry text          |
 
 Legacy template fields `userFirstName`, `userLastName`, `userEmail`, and `userPhone` are also populated. Set the template’s reply-to field to `{{user_email}}` or `{{userEmail}}`.
 
